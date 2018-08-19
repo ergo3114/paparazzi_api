@@ -68,6 +68,12 @@ PROCESS{
             Release_Date = $result.release_date
         }
         [void]$array.Add($obj)
+        if(!(Test-Path -Path "$($env:temp)\Paparazzi")){
+            New-Item -ItemType Directory -Path "$($env:temp)\Paparazzi"
+        }
+        foreach($image in $result.images[0]){
+            
+        }
     }
 }
 END{
