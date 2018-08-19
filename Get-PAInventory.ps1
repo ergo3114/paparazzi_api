@@ -58,7 +58,7 @@ PROCESS{
         $obj = [pscustomobject]@{
             Item_Number = $result.remote_id
             Name = $result.name
-            Description = $result.description
+            Description = $result.description.Replace("<P>","").Replace("</P>","").Replace([Environment]::NewLine, "")
             Retail_Price = $result.prices.null
             Wholesale_Price = $result.prices.wholesale
             Image = $result.image
