@@ -12,9 +12,13 @@
 #>
 [cmdletbinding()]
 Param(
+    # The output file that hold the results of this function; should be a csv
     [string]$Filename = "$($env:temp)\$(Get-Date -UFormat %Y-%m-%d_%H%M%S)_PaparazziAccessories_Products.csv",
+    # The paparazzi url that shows the products
     [string]$URL = "https://paparazziaccessories.com/api/products/?page_size=5000",
+    # The username for paparazzi
     [string]$Username = "username",
+    # The password for the account
     [string]$Pass = "password"
 )
 BEGIN{
