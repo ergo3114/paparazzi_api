@@ -92,7 +92,7 @@ END{
         $msg.SubjectEncoding = [system.Text.Encoding]::Unicode 
         $msg.IsBodyHTML = $true  
         $msg.Subject = "Paparazzi Inventory" 
-        $msg.Body = "<h2> Paparazzi Inventory - (Get-Date -UFormat %Y-%m-%d) </h2> 
+        $msg.Body = "<h2> Paparazzi Inventory - $(Get-Date -UFormat %Y-%m-%d) </h2> 
         </br> 
         This is the latest inventory. Direct questions to C. David Littlejohn.
         "  
