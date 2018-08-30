@@ -79,6 +79,25 @@ PROCESS{
 END{
     if($flag){
         $array | Export-Csv $Filename -Force -NoTypeInformation
+        $email = "email@gmail.com" 
+        $pass = "password" 
+        $smtpServer = "smtp.gmail.com" 
+
+        $msg = new-object Net.Mail.MailMessage 
+        $smtp = new-object Net.Mail.SmtpClient($smtpServer,'587')
+        $smtp.EnableSsl = $true
+        $msg.From = "$email"  
+        $msg.To.Add("email@gmail.com") 
+        $msg.BodyEncoding = [system.Text.Encoding]::Unicode 
+        $msg.SubjectEncoding = [system.Text.Encoding]::Unicode 
+        $msg.IsBodyHTML = $true  
+        $msg.Subject = "Paparazzi Inventory" 
+        $msg.Body = "<h2> Paparazzi Inventory - (Get-Date -UFormat %Y-%m-%d) </h2> 
+        </br> 
+        This is the latest inventory. Direct questions to C. David Littlejohn.
+        "  
+        $SMTP.Credentials = New-Object System.Net.NetworkCredential("$email", "$pass"); 
+        $smtp.Send($msg)
         Write-Verbose "[$(Get-Date)] $($MyInvocation.MyCommand) has completed"
         Stop-Transcript -ErrorAction SilentlyContinue
     }
